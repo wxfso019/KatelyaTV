@@ -17,10 +17,10 @@
 
 ## 📰 项目声明
 
-本项目自「MoonTV」演进而来，为其二创/继承版本，持续维护与改进功能与体验。保留并致谢原作者与社区贡献者。
+本项目自「MoonTV」演进而来，为其二创/继承版本，持续维护与改进功能与体验。保留并致谢原作者与社区贡献者。本项目从katelya77拉取，感谢katelya77。
 
 > **🔔 重要变更**：应用户社区建议，为确保项目长期稳定运行和合规性，内置视频源已移除。现需要用户自行配置资源站以使用完整功能。我们提供了经过测试的推荐配置文件，让您快速上手使用。
-
+                  下载配置文件里面我没有修改，如使用下载配置文件，请把PASSWORD修改为AUTH_PASSWORD。本方法来自katelya77评论区，再次感谢katelya77。
 ---
 
 ## ✨ 功能特性
@@ -77,7 +77,7 @@
 docker run -d \
   --name katelyatv \
   -p 3000:3000 \
-  -e PASSWORD=your_password \
+  -e AUTH_PASSWORD=your_password \
   --restart unless-stopped \
   ghcr.io/katelya77/katelyatv:latest
 ```
@@ -88,7 +88,7 @@ docker run -d \
 docker run -d \
   --name katelyatv \
   -p 3000:3000 \
-  -e PASSWORD=your_password \
+  -e AUTH_PASSWORD=your_password \
   -v $(pwd)/config.json:/app/config.json:ro \
   --restart unless-stopped \
   ghcr.io/katelya77/katelyatv:latest
@@ -112,7 +112,7 @@ cp .env.redis.example .env
 ```bash
 # 管理员账号（必填）
 USERNAME=admin
-PASSWORD=your_secure_password
+AUTH_PASSWORD=your_secure_password
 
 # 存储配置
 NEXT_PUBLIC_STORAGE_TYPE=redis
@@ -145,7 +145,7 @@ cp .env.kvrocks.example .env
 ```bash
 # 管理员账号（必填，否则无法登录）
 USERNAME=admin
-PASSWORD=your_secure_password
+AUTH_PASSWORD=your_secure_password
 
 # 存储配置
 NEXT_PUBLIC_STORAGE_TYPE=kvrocks
@@ -191,7 +191,7 @@ UPSTASH_TOKEN=your_token
 
 # 管理员账号
 USERNAME=admin
-PASSWORD=your_password
+AUTH_PASSWORD=your_password
 
 # 功能开关
 NEXT_PUBLIC_ENABLE_REGISTER=true
@@ -222,7 +222,7 @@ NEXT_PUBLIC_ENABLE_REGISTER=true
 ```bash
 # 管理员账号
 USERNAME=admin
-PASSWORD=your_password
+AUTH_PASSWORD=your_password
 
 # 存储配置
 NEXT_PUBLIC_STORAGE_TYPE=d1
@@ -262,7 +262,7 @@ wrangler d1 execute katelyatv-db --file=./scripts/d1-init.sql
 ```bash
 # 确保 .env 包含完整配置
 USERNAME=admin
-PASSWORD=your_secure_password
+AUTH_PASSWORD=your_secure_password
 NEXT_PUBLIC_STORAGE_TYPE=kvrocks
 NEXT_PUBLIC_ENABLE_REGISTER=true
 
@@ -301,7 +301,7 @@ curl -H "Authorization: Bearer $UPSTASH_TOKEN" \
 | 变量名                        | 必填   | 说明         | 示例值                   |
 | ----------------------------- | ------ | ------------ | ------------------------ |
 | `USERNAME`                    | 是\*   | 管理员用户名 | `admin`                  |
-| `PASSWORD`                    | 是     | 访问密码     | `your_password`          |
+| `AUTH_PASSWORD`               | 是     | 访问密码     | `your_password`          |
 | `NEXT_PUBLIC_STORAGE_TYPE`    | 否     | 存储类型     | `redis/d1/upstash`       |
 | `NEXT_PUBLIC_ENABLE_REGISTER` | 否     | 用户注册     | `true/false`             |
 | `REDIS_URL`                   | 否\*\* | Redis 连接   | `redis://localhost:6379` |
